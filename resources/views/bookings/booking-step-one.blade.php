@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Musico | Booking</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="overflow-hidden m-0 p-0 font-Merriweather_Sans">
     <div class="h-screen">
-        {{-- <div class="w-[60%] h-screen overflow-hidden object-cover bg-black -translate-x-[20%]">
-            <img src="{{asset('img/DLXM_SESSION.png')}}" class="w-full h-full object-cover translate-x-[20%]" alt="">
-        </div> --}}
         <div class="absolute right-4 top-4 text-sm z-50 flex items-center gap-1">
             <a href="/" class="font-light">Home</a>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
@@ -23,26 +21,29 @@
         </div>
         <div>
             <img src="{{ asset('img/DLXM_SESSION.png') }}" class="w-[45%] h-screen object-cover" alt="">
+            {{-- A video can be here instead as well if available --}}
         </div>
         <div class="bg-primary/20 w-[55%] h-screen absolute right-0 top-0 p-20">
-            <div class="text-xs flex items-center justify-between w-[22rem] font-light">
+            <div class="text-xs flex items-center justify-between w-[30rem] font-light">
                 <div class="flex items-center font-semibold">
                     <p class="bg-primary px-4 py-2 rounded-lg mr-2 text-white">1</p>
-                    <p>Sign Up</p>
+                    <p>Personal Details</p>
                 </div>
                 <div class="flex items-center ">
                     <p class="bg-primary/30 px-4 py-2 rounded-lg mr-2">2</p>
-                    <p>Message</p>
+                    <p>Music Session Details</p>
                 </div>
                 <div class="flex items-center ">
                     <p class="bg-primary/30 px-4 py-2 rounded-lg mr-2">3</p>
-                    <p>Checkbox</p>
+                    <p>Payment Details</p>
                 </div>
             </div>
             <div class="bg-primary/40 w-full h-[0.05rem] mt-6"></div>
             <div class="pt-10 pb-8">
                 <h4 class="text-[#d1c2a7]">Step 1/3</h4>
-                <h1 class="text-[#8b7045] font-bold text-3xl tracking-tighter pt-1">Sign Up</h1>
+                <h1 class="text-[#8b7045] font-bold text-3xl tracking-[-0.03rem] pt-1 relative before:absolute before:bg-[#423520] before:w-12 before:h-[0.1rem] before:-bottom-2">
+                    Personal Details
+                </h1>
             </div>
             <form action="">
                 <div class="grid grid-cols-2 gap-x-7 gap-y-4 text-sm">
@@ -64,12 +65,13 @@
                     </div>
                     <div class="col-span-2">
                         <label for="address" class="text-[#423520]">Address</label>
-                        <input type="text" id="address" name="address" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                        {{-- <input type="text" id="address" name="address" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0"> --}}
+                        <textarea name="address" id="address" rows="2" class="resize-none mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0"></textarea>
                     </div>
                 </div>
                 <div class="bg-primary/40 w-full h-[0.05rem] mt-10"></div>
                 <div class="flex justify-end">
-                    <button type="submit" class="bg-[#8b7045] text-white text-sm w-36 h-12 rounded-lg mt-7 hover:shadow-xl">Next Step</button>
+                    <button class="bg-[#8b7045] text-white text-sm w-36 h-12 rounded-lg mt-7 hover:shadow-xl">Next Step</button>
                 </div>
             </form>
         </div>
@@ -77,3 +79,33 @@
 </body>
 
 </html>
+
+{{--
+    If they want flyer, upload picture and generate flyer for them to download
+        - this is not going to be part of the form element filled for each option but on it's own and generate based on the option picked.
+    --}}
+
+{{-- Create links for all our videos --}}
+{{-- Add Resolutions for our videos --}}
+
+
+{{--
+    Personally Composed : Is it a personally composed song?
+        Name of song
+        key
+        attach audio
+    --}}
+
+{{--
+    Medley : Is it a worship medley?
+        Names of Songs
+        Key
+        attach audio
+    --}}
+
+{{--
+    Do you want to replicate a song?
+    Title of sing
+    Key
+    Composer
+    --}}

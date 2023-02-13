@@ -12,3 +12,17 @@
     font-family: 'Candara';
     src: url('../../public/fonts/Candara_Font.ttf');
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid #D1B381;
+    -webkit-box-shadow: 0 0 0px 1000px #d1b48192 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}

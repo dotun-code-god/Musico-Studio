@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/booking', function() {
-    return view('booking');
-})->name('booking');
+
+Route::get('/booking-one', function() {
+    return view('bookings.booking-step-one');
+})->name('booking.one');
+
+Route::get('/booking-two', function() {
+    return view('bookings.booking-step-two');
+})->name('booking.two');
+
+Route::get('/booking-three', function() {
+    return view('bookings.booking-step-three');
+})->name('booking.three');

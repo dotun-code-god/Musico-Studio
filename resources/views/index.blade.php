@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Musico</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">   
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="font-Candara">
@@ -89,7 +89,7 @@
         </div>
         <div class="relative py-28">
             <div class="absolute bottom-0 right-[5%] my-8">
-                <a href="{{route('booking')}}" class="block uppercase bg-primary text-[#191b1f] text-xs font-bold mx-auto w-[12rem] mt-8 px-10 py-4 border-2 border-primary hover:text-primary hover:bg-transparent hover:shadow-[0px_0px_7px_0px_#bd9a616e,0px_0px_12px_0px_#bd9a616e] transition-shadow duration-150 ease-in-out">
+                <a href="{{route('booking.one')}}" class="block uppercase bg-primary text-[#191b1f] text-xs font-bold mx-auto w-[12rem] mt-8 px-10 py-4 border-2 border-primary hover:text-primary hover:bg-transparent hover:shadow-[0px_0px_7px_0px_#bd9a616e,0px_0px_12px_0px_#bd9a616e] transition-shadow duration-150 ease-in-out">
                     Book Session Now</a>
             </div>
             <img src="{{ asset('Icons/music-icon.png') }}"
@@ -364,7 +364,7 @@
                         best service and amenitites signed artists and independent musicians.</span>
                 </span>
             </h1>
-            <a href="{{route('booking')}}"
+            <a href="{{route('booking.one')}}"
                 class="border-2 border-primary text-primary text-xs font-bold block mr-auto w-[12rem] mt-8 px-10 py-4 hover:shadow-[0px_0px_7px_0px_#bd9a616e,0px_0px_12px_0px_#bd9a616e] transition-shadow duration-150 ease-linear">BOOK
                 SESSION NOW</a>
         </div>
