@@ -9,6 +9,8 @@ module.exports = {
         colors : {
             primary : '#D1B381',
             border_primary: '#35312e',
+            music_session_sec_before: '#9AA474',
+            music_session_sec_bg: '#a49f745c',
         },
         fontFamily : {
             Candara : 'Candara',
@@ -27,5 +29,7 @@ module.exports = {
         },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }

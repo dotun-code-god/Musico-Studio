@@ -14,7 +14,8 @@
     <div class="h-screen">
         <div class="absolute right-4 top-4 text-sm z-50 flex items-center gap-1">
             <a href="/" class="font-light">Home</a>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-3 h-3">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
             <a ">Booking</a>
@@ -41,7 +42,7 @@
             <div class="bg-primary/40 w-full h-[0.05rem] mt-6"></div>
             <div class="pt-10 pb-8">
                 <h4 class="text-[#d1c2a7]">Step 1/3</h4>
-                <h1 class="text-[#8b7045] font-bold text-3xl tracking-[-0.03rem] pt-1 relative before:absolute before:bg-[#423520] before:w-12 before:h-[0.1rem] before:-bottom-2">
+                <h1 class="text-[#8b7045] font-bold text-3xl tracking-[-0.03rem] pt-1 drop-shadow-md before:drop-shadow-md relative before:absolute before:bg-[#423520] before:w-12 before:h-[0.1rem] before:-bottom-2">
                     Personal Details
                 </h1>
             </div>
@@ -49,24 +50,38 @@
                 <div class="grid grid-cols-2 gap-x-7 gap-y-4 text-sm">
                     <div>
                         <label for="firstname" class="text-[#423520]">First Name</label>
-                        <input type="text" id="firstname" name="firstname" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                        <input type="text" id="firstname" name="firstname" class="mt-1 block text-sm w-full py-[0.7rem] font-light px-3 rounded-md bg-transparent focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
                     </div>
                     <div>
                         <label for="lastname" class="text-[#423520]">Last Name</label>
-                        <input type="text" id="lastname" name="lastname" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                        <input type="text" id="lastname" name="lastname" class="mt-1 block text-sm w-full py-[0.7rem] font-light px-3 rounded-md bg-transparent focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
                     </div>
                     <div>
-                        <label for="dob" class="text-[#423520]">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                        <label class="text-[#423520] block">Gender</label>
+                        <div class="flex gap-6 items-center mt-3">
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="gender" id="male" class="cursor-pointer bg-transparent border-[0.1rem] focus:ring-primary border-[#d1c2a7] checked:text-[#8b7045] checked:ring-primary">
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="gender" id="female" class="cursor-pointer bg-transparent border-[0.1rem] focus:ring-primary border-[#d1c2a7] checked:text-[#8b7045] checked:ring-primary">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <label for="email" class="text-[#423520]">Email Address</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                        <input type="email" id="email" name="email" class="mt-1 block text-sm w-full py-[0.7rem] font-light px-3 rounded-md bg-transparent focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
                     </div>
-                    <div class="col-span-2">
+                    <div>
+                        <label for="socials" class="text-[#423520]">Social Media Handles</label>
+                        <input type="text" id="socials" name="socials" class="mt-1 block text-sm w-full py-[0.7rem] font-light px-3 rounded-md bg-transparent focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                    </div>
+                    <div>
                         <label for="address" class="text-[#423520]">Address</label>
-                        {{-- <input type="text" id="address" name="address" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0"> --}}
-                        <textarea name="address" id="address" rows="2" class="resize-none mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0"></textarea>
+                        <input type="text" id="address" name="address" class="mt-1 block text-sm w-full py-[0.7rem] font-light px-3 rounded-md bg-transparent focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                        {{-- <textarea name="address" id="address" rows="2"
+                            class="resize-none mt-1 block w-full py-2 px-3 rounded-md bg-transparent focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0"></textarea> --}}
                     </div>
                 </div>
                 <div class="bg-primary/40 w-full h-[0.05rem] mt-10"></div>
@@ -80,32 +95,6 @@
 
 </html>
 
-{{--
-    If they want flyer, upload picture and generate flyer for them to download
-        - this is not going to be part of the form element filled for each option but on it's own and generate based on the option picked.
-    --}}
-
-{{-- Create links for all our videos --}}
-{{-- Add Resolutions for our videos --}}
-
-
-{{--
-    Personally Composed : Is it a personally composed song?
-        Name of song
-        key
-        attach audio
-    --}}
-
-{{--
-    Medley : Is it a worship medley?
-        Names of Songs
-        Key
-        attach audio
-    --}}
-
-{{--
-    Do you want to replicate a song?
-    Title of sing
-    Key
-    Composer
-    --}}
+{{-- How are u expecting the social media handles
+    just one or they can add as many as they want
+    but since its only for the flyer and sharing well...... --}}

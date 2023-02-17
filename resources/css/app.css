@@ -23,6 +23,30 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     border: 1px solid #D1B381;
-    -webkit-box-shadow: 0 0 0px 1000px #d1b48192 inset;
+    -webkit-box-shadow: 0 0 0px 1000px #e1c28d7e inset;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+.is-open{
+    height: 0;
+    transition: height 0.5s;
+    margin-top:0.75rem;
+    margin-bottom:0.75rem;
+}
+.is-closed {
+    height: 0;
+    transition:height 0.5s;
+}
+.svg-plus-transition{
+    transition: transform 2s;
+    transition-timing-function : cubic-bezier(0.19, 1.01, 0, 0.84);
+}
+.finish_button {
+    animation-name: finish_button;
+    animation-duration: 0.2s;
+}
+@keyframes finish_button {
+    0% { transform:scale(1) }
+    50%{ transform:scale(0.9) }
+    100%{ transform:scale(1) }
 }

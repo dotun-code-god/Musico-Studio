@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body class="overflow-hidden m-0 p-0 font-Merriweather_Sans">
+<body class="m-0 p-0 font-Merriweather_Sans">
     <div class="h-screen">
         <div class="absolute right-4 top-4 text-sm z-50 flex items-center gap-1">
             <a href="/" class="font-light">Home</a>
@@ -23,7 +23,7 @@
             <img src="{{ asset('img/DLXM_SESSION.png') }}" class="w-[45%] h-screen object-cover" alt="">
             {{-- A video can be here instead as well if available --}}
         </div>
-        <div class="bg-primary/20 w-[55%] h-screen absolute right-0 top-0 p-20">
+        <div class="bg-primary/20 w-[55%] h-screen absolute right-0 top-0 p-20 pb-7 overflow-y-auto">
             <div class="text-xs flex items-center justify-between w-[30rem] font-light">
                 <div class="flex items-center">
                     <p class="bg-primary/30 px-4 py-2 rounded-lg mr-2">1</p>
@@ -41,31 +41,91 @@
             <div class="bg-primary/40 w-full h-[0.05rem] mt-6"></div>
             <div class="pt-10 pb-8">
                 <h4 class="text-[#d1c2a7]">Step 2/3</h4>
-                <h1 class="text-[#8b7045] font-bold text-3xl tracking-[-0.03rem] pt-1 relative before:absolute before:bg-[#423520] before:w-12 before:h-[0.1rem] before:-bottom-2">
+                <h1 class="text-[#8b7045] font-bold text-3xl tracking-[-0.03rem] pt-1 drop-shadow-md before:drop-shadow-md relative
+                    before:absolute before:bg-[#423520] before:w-12 before:h-[0.1rem] before:-bottom-2">
                     Music Session Details
                 </h1>
             </div>
             <form action="">
-                <div class="grid grid-cols-2 gap-x-7 gap-y-4 text-sm">
-                    <div>
-                        <label for="firstname" class="text-[#423520]">First Name</label>
-                        <input type="text" id="firstname" name="firstname" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                <div class="flex flex-col items-center gap-2" id="music-session-details">
+                    <div class="shadow-md bg-primary/30 w-[30rem] rounded-lg relative before:bg-primary
+                        before:absolute before:h-full before:w-[0.3rem] before:left-0 before:top-0 before:rounded-tl-lg before:rounded-bl-lg ">
+                        <div class="session-details-preview flex items-center px-3 py-4 cursor-pointer hover:bg-primary/40 transition-all duration-150 ease-linear rounded-tl-lg rounded-tr-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[1.4rem] h-[1.4rem] mr-3 svg-plus-transition">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                            <div>
+                                <h2 class="text-[#423520] font-bold">Personally Composed</h2>
+                                <p class="text-sm font-light">Is it your personally composed song?</p>
+                            </div>
+                        </div>
+                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden form-proper" extended-height="18rem">
+                            <input type="text" name="nos_comp" placeholder="Name of Song" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" name="kos_comp" placeholder="Key" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <span>Kindly attach an audio</span>
+                            <ul class="list-disc ml-4 italic text-xs -mt-2">
+                                <li>upload a pre-recorded sample of your song</li>
+                                <li>mp3, ogg formats alone are supported</li>
+                            </ul>
+                            <input type="file" name="audio_comp" id="audio_comp" class="hidden">
+                            <p class="file_upload_trigger flex items-center justify-center gap-2 cursor-pointer m-0 bg-primary w-36 font-bold py-4 rounded-md hover:shadow-lg transition-shadow duration-150 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                </svg>
+                                Upload Audio
+                            </p>
+                            <button type="button" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
+                        </div>
                     </div>
-                    <div>
-                        <label for="lastname" class="text-[#423520]">Last Name</label>
-                        <input type="text" id="lastname" name="lastname" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
+                    <div class="shadow-md bg-primary/30 w-[30rem] rounded-lg relative before:bg-primary
+                        before:absolute before:h-full before:w-[0.3rem] before:left-0 before:top-0 before:rounded-tl-lg before:rounded-bl-lg ">
+                        <div class="session-details-preview flex items-center px-3 py-4 cursor-pointer hover:bg-primary/40 transition-all duration-150 ease-linear rounded-tl-lg rounded-tr-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[1.4rem] h-[1.4rem] mr-3 svg-plus-transition">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                            <div>
+                                <h2 class="text-[#423520] font-bold">Medley</h2>
+                                <p class="text-sm font-light">Is it a worship medley?</p>
+                            </div>
+                        </div>
+                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden form-proper" extended-height="28rem">
+                            <input type="text" name="nos1_med" placeholder="Name of Song (1)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" name="nos2_med" placeholder="Name of Song (2)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" name="nos3_med" placeholder="Name of Song (3)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" name="nos4_med" placeholder="Name of Song (4)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" name="nos5_med" placeholder="Key(s)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <span>Kindly attach an audio</span>
+                            <ul class="list-disc ml-4 italic text-xs -mt-2">
+                                <li>upload a pre-recorded sample of your song & the arrangement</li>
+                                <li>mp3, ogg formats alone are supported</li>
+                            </ul>
+                            <input type="file" name="audio" id="audio" class="hidden">
+                            <p class="file_upload_trigger flex items-center justify-center gap-2 cursor-pointer m-0 bg-primary w-36 font-bold py-4 rounded-md hover:shadow-lg transition-shadow duration-150 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                </svg>
+                                Upload Audio
+                            </p>
+                            <button type="button" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
+                        </div>
                     </div>
-                    <div>
-                        <label for="dob" class="text-[#423520]">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
-                    </div>
-                    <div>
-                        <label for="email" class="text-[#423520]">Email Address</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0">
-                    </div>
-                    <div class="col-span-2">
-                        <label for="address" class="text-[#423520]">Nature Of Song</label>
-                        <textarea placeholder="" name="address" id="address" rows="2" class="mt-1 block w-full py-2 px-3 rounded-md bg-transparent border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0"></textarea>
+                    <div class="shadow-md bg-primary/30 w-[30rem] rounded-lg relative before:bg-primary
+                        before:absolute before:h-full before:w-[0.3rem] before:left-0 before:top-0 before:rounded-tl-lg before:rounded-bl-lg ">
+                        <div class="session-details-preview flex items-center px-3 py-4 cursor-pointer hover:bg-primary/40 transition-all duration-150 ease-linear rounded-tl-lg rounded-tr-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-[1.4rem] h-[1.4rem] mr-3 svg-plus-transition">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                            <div>
+                                <h2 class="text-[#423520] font-bold">Replicate Song</h2>
+                                <p class="text-sm font-light">Do you want to replicate a song?</p>
+                            </div>
+                        </div>
+                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden form-proper" extended-height="14.3rem">
+                            <input type="text" placeholder="Title of Song" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" placeholder="Key" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" placeholder="Composer" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <button type="button" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-primary/40 w-full h-[0.05rem] mt-10"></div>
@@ -76,6 +136,49 @@
             </form>
         </div>
     </div>
+
+    <x-load-scripts></x-load-scripts>
 </body>
 
 </html>
+
+
+
+{{--
+    If they want flyer, upload picture and generate flyer for them to download
+        - this is not going to be part of the form element filled for each option but on it's own and generate based on the option picked.
+    --}}
+
+{{-- Create links for all our videos --}}
+{{-- Add Resolutions for our videos --}}
+
+
+{{--
+    Personally Composed : Is it a personally composed song?
+        Name of song
+        key
+        attach audio
+    --}}
+
+{{--
+    Medley : Is it a worship medley?
+        Names of Songs
+        Key
+        attach audio
+    --}}
+
+{{--
+    Do you want to replicate a song?
+    Title of song
+    Key
+    Composer
+    --}}
+
+
+{{--
+when u want to click on finish try and validate the form that pertains to
+
+when either of the sub forms is active set the bg of the current hover to be
+     --}}
+
+     {{-- Add text shadow for the likes of music session details --}}
