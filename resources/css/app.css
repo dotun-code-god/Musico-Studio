@@ -30,7 +30,6 @@ select:-webkit-autofill:focus {
 .is-open{
     height: 0;
     transition: height 0.5s;
-    margin-top:0.75rem;
     margin-bottom:0.75rem;
 }
 .is-closed {
@@ -41,11 +40,11 @@ select:-webkit-autofill:focus {
     transition: transform 2s;
     transition-timing-function : cubic-bezier(0.19, 1.01, 0, 0.84);
 }
-.finish_button {
-    animation-name: finish_button;
+.button_click {
+    animation-name: button_click;
     animation-duration: 0.2s;
 }
-@keyframes finish_button {
+@keyframes button_click {
     0% { transform:scale(1) }
     50%{ transform:scale(0.9) }
     100%{ transform:scale(1) }

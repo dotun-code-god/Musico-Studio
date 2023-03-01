@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AudioUploadsController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +19,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/booking-one', function() {
-    return view('bookings.booking-step-one');
-})->name('booking.one');
+Route::get('/booking-one', [BookingController::class, 'bookingOne'])->name('booking.one');
+Route::post('/booking-one', [BookingController::class, 'bookingOneVerify']);
 
-Route::get('/booking-two', function() {
-    return view('bookings.booking-step-two');
-})->name('booking.two');
+Route::get('/booking-two', [BookingController::class, 'bookingTwo']);
+Route::post('/booking-two', [BookingController::class, 'bookingTwoVerify']);
 
-Route::get('/booking-three', function() {
-    return view('bookings.booking-step-three');
-})->name('booking.three');
+Route::get('/booking-three', [BookingController::class, 'bookingThree']);
+Route::post('/booking-three', [BookingController::class, 'bookingThreeVerify']);
+
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+
+Route::post('/tmp-upload', [AudioUploadsController::class, 'tmpUpload'])->name('tmp.upload');
+Route::delete('/tmp-delete', [AudioUploadsController::class, 'tmpDelete'])->name('tmp.delete');

@@ -8,13 +8,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Musico | Booking</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.css" />
+    <x-load-styles></x-load-styles>
 </head>
 
 <body class="m-0 p-0 font-Merriweather_Sans">
     <div class="h-screen">
         <div class="absolute right-4 top-4 text-sm z-50 flex items-center gap-1">
             <a href="/" class="font-light">Home</a>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-3 h-3">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
             <a ">Booking</a>
@@ -46,7 +49,8 @@
                     Music Session Details
                 </h1>
             </div>
-            <form action="">
+            <form enctype="multipart/form-data" method="POST" action="{{route('booking.store')}}">
+                @csrf
                 <div class="flex flex-col items-center gap-2" id="music-session-details">
                     <div class="shadow-md bg-primary/30 w-[30rem] rounded-lg relative before:bg-primary
                         before:absolute before:h-full before:w-[0.3rem] before:left-0 before:top-0 before:rounded-tl-lg before:rounded-bl-lg ">
@@ -59,22 +63,27 @@
                                 <p class="text-sm font-light">Is it your personally composed song?</p>
                             </div>
                         </div>
-                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden form-proper" extended-height="18rem">
-                            <input type="text" name="nos_comp" placeholder="Name of Song" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
-                            <input type="text" name="kos_comp" placeholder="Key" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
-                            <span>Kindly attach an audio</span>
-                            <ul class="list-disc ml-4 italic text-xs -mt-2">
-                                <li>upload a pre-recorded sample of your song</li>
-                                <li>mp3, ogg formats alone are supported</li>
-                            </ul>
-                            <input type="file" name="audio_comp" id="audio_comp" class="hidden">
-                            <p class="file_upload_trigger flex items-center justify-center gap-2 cursor-pointer m-0 bg-primary w-36 font-bold py-4 rounded-md hover:shadow-lg transition-shadow duration-150 text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                </svg>
-                                Upload Audio
-                            </p>
-                            <button type="button" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
+                        {{-- d1c2a7 --}}
+                        <div class="text-sm mx-12 is-closed overflow-hidden" extended-height="20" id="form1">
+                            <p class="text-[0.7rem] bg-red-600 p-1 text-white text-center font-light invisible my-1">Please fill out all fields</p>
+                            <div class="flex flex-col gap-2">
+                                <input type="text" name="nos_comp" placeholder="Name of Song" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                                <input type="text" name="kos_comp" placeholder="Key" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                                <span>Kindly attach an audio</span>
+                                <ul class="list-disc ml-4 italic text-xs -mt-2">
+                                    <li>upload a pre-recorded sample of your song</li>
+                                    <li>mp3, mp4, wav, wma, aac formats alone are supported</li>
+                                </ul>
+                                <input type="file" name="audio_comp" id="audio_comp" >
+                                {{-- <p class="file_upload_trigger flex items-center justify-center gap-2 cursor-pointer m-0 bg-primary w-36 font-bold py-4 rounded-md hover:shadow-lg transition-shadow duration-150 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                    </svg>
+                                    <i class="fa fa-spinner fa-spin" style="font-size:20px;display:none;"></i>
+                                    Upload Audio <span id="processing" class="hidden">Processing...</span>
+                                </p> --}}
+                                <button type="button" onclick="validateMusicSessionForm('form1')" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
+                            </div>
                         </div>
                     </div>
                     <div class="shadow-md bg-primary/30 w-[30rem] rounded-lg relative before:bg-primary
@@ -85,10 +94,10 @@
                             </svg>
                             <div>
                                 <h2 class="text-[#423520] font-bold">Medley</h2>
-                                <p class="text-sm font-light">Is it a worship medley?</p>
+                                    <p class="text-sm font-light">Is it a worship medley?</p>
                             </div>
                         </div>
-                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden form-proper" extended-height="28rem">
+                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden" extended-height="28" id="form2">
                             <input type="text" name="nos1_med" placeholder="Name of Song (1)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
                             <input type="text" name="nos2_med" placeholder="Name of Song (2)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
                             <input type="text" name="nos3_med" placeholder="Name of Song (3)" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
@@ -120,10 +129,10 @@
                                 <p class="text-sm font-light">Do you want to replicate a song?</p>
                             </div>
                         </div>
-                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden form-proper" extended-height="14.3rem">
-                            <input type="text" placeholder="Title of Song" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
-                            <input type="text" placeholder="Key" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
-                            <input type="text" placeholder="Composer" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                        <div class="text-sm mx-12 is-closed flex flex-col gap-2 overflow-hidden" extended-height="14.3" id="form3">
+                            <input type="text" name="tos_rep" placeholder="Title of Song" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" name="kos_rep" placeholder="Key" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
+                            <input type="text" name="composer_rep" placeholder="Composer" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
                             <button type="button" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
                         </div>
                     </div>
@@ -138,6 +147,45 @@
     </div>
 
     <x-load-scripts></x-load-scripts>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.js"></script>
+    <script>
+        function validateMusicSessionForm(form) {
+            let inputTexts = $(`#${form} input[type=text]`);
+            let inputFile = $(`#${form} input[type=file]`)[0];
+            let file = inputFile.files[0];
+            let isReady = false;
+            inputTexts.each(function(index, input) {
+                if ($(this).val() === '') {
+                    $(`#${form} > p:first-child`).removeClass('invisible');
+                    setTimeout(() => {
+                        $(`#${form} > p:first-child`).addClass('invisible');
+                    }, 3000);
+                    isReady = true;
+                }
+            })
+            // if file is uploaded set is ready to true otherwise set to false and after that use the isready state to know when all fields are actually filled
+        }
+
+
+
+
+        // Get a reference to the file input element
+        const inputElement = document.querySelector('#audio_comp');
+
+        // Create a FilePond instance
+        const pond = FilePond.create(inputElement);
+
+        FilePond.setOptions({
+            server: {
+                process: '/tmp-upload',
+                revert: '/tmp-delete',
+                headers: {
+                    'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                }
+            },
+        });
+    </script>
+    <script></script>
 </body>
 
 </html>

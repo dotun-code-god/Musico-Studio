@@ -6,6 +6,8 @@ use Illuminate\View\Component;
 
 class loadScripts extends Component
 {
+
+    // public $customScripts;
     /**
      * Create a new component instance.
      *
@@ -13,7 +15,7 @@ class loadScripts extends Component
      */
     public function __construct()
     {
-        //
+        // $this->customScripts = $customScripts;
     }
 
     /**

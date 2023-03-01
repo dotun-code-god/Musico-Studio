@@ -672,6 +672,9 @@ select{
     max-width: 1536px;
   }
 }
+.invisible{
+  visibility: hidden;
+}
 .fixed{
   position: fixed;
 }
@@ -758,6 +761,10 @@ select{
 .mx-12{
   margin-left: 3rem;
   margin-right: 3rem;
+}
+.my-1{
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 .mt-3{
   margin-top: 0.75rem;
@@ -1162,6 +1169,10 @@ select{
   --tw-bg-opacity: 1;
   background-color: rgb(139 112 69 / var(--tw-bg-opacity));
 }
+.bg-red-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
 .bg-white\/30{
   background-color: rgb(255 255 255 / 0.3);
 }
@@ -1192,6 +1203,9 @@ select{
 }
 .p-20{
   padding: 5rem;
+}
+.p-1{
+  padding: 0.25rem;
 }
 .py-3{
   padding-top: 0.75rem;
@@ -1283,9 +1297,6 @@ select{
 .pt-1{
   padding-top: 0.25rem;
 }
-.pb-10{
-  padding-bottom: 2.5rem;
-}
 .pb-7{
   padding-bottom: 1.75rem;
 }
@@ -1345,6 +1356,9 @@ select{
 .text-lg{
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+.text-\[0\.7rem\]{
+  font-size: 0.7rem;
 }
 .text-base{
   font-size: 1rem;
@@ -1575,7 +1589,6 @@ select:-webkit-autofill:focus {
 .is-open{
     height: 0;
     transition: height 0.5s;
-    margin-top:0.75rem;
     margin-bottom:0.75rem;
 }
 .is-closed {
@@ -1586,11 +1599,11 @@ select:-webkit-autofill:focus {
     transition: transform 2s;
     transition-timing-function : cubic-bezier(0.19, 1.01, 0, 0.84);
 }
-.finish_button {
-    animation-name: finish_button;
+.button_click {
+    animation-name: button_click;
     animation-duration: 0.2s;
 }
-@keyframes finish_button {
+@keyframes button_click {
     0% { transform:scale(1) }
     50%{ transform:scale(0.9) }
     100%{ transform:scale(1) }
