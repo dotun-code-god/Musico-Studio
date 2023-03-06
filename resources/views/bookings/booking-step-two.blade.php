@@ -49,7 +49,7 @@
                     Music Session Details
                 </h1>
             </div>
-            <form enctype="multipart/form-data" method="POST" action="{{route('booking.store')}}">
+            <form enctype="multipart/form-data" method="POST" action="{{route('tmp.upload')}}">
                 @csrf
                 <div class="flex flex-col items-center gap-2" id="music-session-details">
                     <div class="shadow-md bg-primary/30 w-[30rem] rounded-lg relative before:bg-primary
@@ -63,8 +63,7 @@
                                 <p class="text-sm font-light">Is it your personally composed song?</p>
                             </div>
                         </div>
-                        {{-- d1c2a7 --}}
-                        <div class="text-sm mx-12 is-closed overflow-hidden" extended-height="20" id="form1">
+                        <div class="text-sm mx-12 is-closed overflow-hidden" extended-height="23" id="form1">
                             <p class="text-[0.7rem] bg-red-600 p-1 text-white text-center font-light invisible my-1">Please fill out all fields</p>
                             <div class="flex flex-col gap-2">
                                 <input type="text" name="nos_comp" placeholder="Name of Song" class="w-full placeholder-slate-600 rounded-lg focus:rounded-none text-sm font-light py-3 focus:ring-0 border-[#d1c2a7] border-[0.1rem] focus:border-[#8b7045] focus:outline-0 bg-white/30">
@@ -74,14 +73,7 @@
                                     <li>upload a pre-recorded sample of your song</li>
                                     <li>mp3, mp4, wav, wma, aac formats alone are supported</li>
                                 </ul>
-                                <input type="file" name="audio_comp" id="audio_comp" >
-                                {{-- <p class="file_upload_trigger flex items-center justify-center gap-2 cursor-pointer m-0 bg-primary w-36 font-bold py-4 rounded-md hover:shadow-lg transition-shadow duration-150 text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                    </svg>
-                                    <i class="fa fa-spinner fa-spin" style="font-size:20px;display:none;"></i>
-                                    Upload Audio <span id="processing" class="hidden">Processing...</span>
-                                </p> --}}
+                                <input type="file" name="audio_comp" id="audio_comp">
                                 <button type="button" onclick="validateMusicSessionForm('form1')" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
                             </div>
                         </div>
@@ -106,15 +98,9 @@
                             <span>Kindly attach an audio</span>
                             <ul class="list-disc ml-4 italic text-xs -mt-2">
                                 <li>upload a pre-recorded sample of your song & the arrangement</li>
-                                <li>mp3, ogg formats alone are supported</li>
+                                <li>mp3, mp4, wav, wma, aac formats alone are supported</li>
                             </ul>
-                            <input type="file" name="audio" id="audio" class="hidden">
-                            <p class="file_upload_trigger flex items-center justify-center gap-2 cursor-pointer m-0 bg-primary w-36 font-bold py-4 rounded-md hover:shadow-lg transition-shadow duration-150 text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                </svg>
-                                Upload Audio
-                            </p>
+                            <input type="file" name="audio_med" id="audio_med">
                             <button type="button" class="mt-2 border-2 border-[#423520]/60 text-[#423520] hover:shadow-[inset_0px_0px_6px_#423520c2] hover:rounded-md transition-all duration-150 text-center text-base py-2 w-24 ml-auto form_finish">Finish</button>
                         </div>
                     </div>
@@ -146,10 +132,15 @@
         </div>
     </div>
 
-    <x-load-scripts></x-load-scripts>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.js"></script>
-    <script>
-        function validateMusicSessionForm(form) {
+    @php
+        $src = [
+            'https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.js',
+            'https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js'
+        ];
+    @endphp
+    <x-load-scripts :src="$src">
+        <script>
+            function validateMusicSessionForm(form) {
             let inputTexts = $(`#${form} input[type=text]`);
             let inputFile = $(`#${form} input[type=file]`)[0];
             let file = inputFile.files[0];
@@ -166,26 +157,27 @@
             // if file is uploaded set is ready to true otherwise set to false and after that use the isready state to know when all fields are actually filled
         }
 
-
-
-
-        // Get a reference to the file input element
-        const inputElement = document.querySelector('#audio_comp');
-
-        // Create a FilePond instance
-        const pond = FilePond.create(inputElement);
-
+        // Register the plugin
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+        FilePond.create(document.querySelector('#audio_comp'), {
+            acceptedFileTypes: ['mp3', 'wav', 'aac'],
+            labelFileTypeNotAllowed: "Invalid File Type"
+        });
+        FilePond.create(document.querySelector('#audio_med'), {
+            acceptedFileTypes: ['mp3', 'wav', 'aac'],
+            labelFileTypeNotAllowed: "Invalid File Type"
+        });
         FilePond.setOptions({
             server: {
                 process: '/tmp-upload',
                 revert: '/tmp-delete',
                 headers: {
-                    'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             },
         });
-    </script>
-    <script></script>
+        </script>
+    </x-load-scripts>
 </body>
 
 </html>

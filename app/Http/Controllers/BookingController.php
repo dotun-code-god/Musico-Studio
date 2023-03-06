@@ -38,7 +38,7 @@ class BookingController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function storeUploads(Request $request)
     {
         // this is just a overview how you move uploaded files
         // from tmp to the final destination

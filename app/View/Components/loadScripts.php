@@ -7,15 +7,16 @@ use Illuminate\View\Component;
 class loadScripts extends Component
 {
 
-    // public $customScripts;
+    public $src;
+
     /**
      * Create a new component instance.
-     *
+     * @param $src
      * @return void
      */
-    public function __construct()
+    public function __construct($src)
     {
-        // $this->customScripts = $customScripts;
+        $this->src = $src;
     }
 
     /**

@@ -23,12 +23,12 @@ Route::get('/booking-one', [BookingController::class, 'bookingOne'])->name('book
 Route::post('/booking-one', [BookingController::class, 'bookingOneVerify']);
 
 Route::get('/booking-two', [BookingController::class, 'bookingTwo']);
-Route::post('/booking-two', [BookingController::class, 'bookingTwoVerify']);
+Route::post('/booking-two', [BookingController::class, 'bookingTwoVerify']);    
 
 Route::get('/booking-three', [BookingController::class, 'bookingThree']);
 Route::post('/booking-three', [BookingController::class, 'bookingThreeVerify']);
 
-Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+Route::post('/booking', [BookingController::class, 'storeUploads'])->name('booking.store');
 
 Route::post('/tmp-upload', [AudioUploadsController::class, 'tmpUpload'])->name('tmp.upload');
 Route::delete('/tmp-delete', [AudioUploadsController::class, 'tmpDelete'])->name('tmp.delete');

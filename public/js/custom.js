@@ -97,6 +97,4 @@ $(function () {
         })
     })
 
-
-    // console.log(validateMusicSessionForm('form1'));
 })
