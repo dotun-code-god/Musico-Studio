@@ -14,7 +14,8 @@
     {{-- https://www.pinterest.com/pin/42995371436341271/ --}}
 
     <div
-        class="relative bg-[url('http://musico.com.ng/img/young-man-and-woman-recording-music-singing.jpg')] w-full h-screen bg-cover bg-no-repeat text-white
+        style="background: url('http://127.0.0.1:8000/img/young-man-and-woman-recording-music-singing.jpg')"
+        class="relative w-full h-screen bg-cover bg-no-repeat text-white
         before:absolute before:top-0 before:left-0 before:z-10 before:bg-[linear-gradient(180deg,rgb(0_0_0/0.9),rgb(0_0_0/0.7))] before:w-full before:h-screen">
         <div class="relative z-50">
             {{-- Social Media container --}}
